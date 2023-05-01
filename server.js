@@ -11,6 +11,12 @@ const app = express(); // middleware
 
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("Hi, This is rest api for jobs ");
+});
+
+// middleware to set router
 app.use("/api", routes);
 
 //db connection
