@@ -14,20 +14,18 @@ app.use(express.json());
 app.use("/api", routes);
 
 //db connection
-async function connect() {
+const connect = async () => {
   try {
     await mongoose.connect(db_uri, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });
-    console.log("Connected to Database!");
+    app.listen(port, () => {
+      console.log(`our app is connected on ${port}}`);
+    });
   } catch (error) {
     console.log("Error connecting to Database :", error);
   }
-}
+};
 
 connect();
-
-app.listen(port, () => {
-  console.log(`our app is listening on ${port}}`);
-});
